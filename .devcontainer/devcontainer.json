@@ -1,0 +1,19 @@
+{
+  "name": "FI5699 Dissertation Module",
+  "build": {
+    "dockerfile": "../Dockerfile"
+  },
+  "remoteUser": "vscode",
+  "postCreateCommand": "uv init --no-readme 2>/dev/null; uv add polars plotnine pyfixest diff-diff",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": ".venv/bin/python"
+      },
+      "extensions": [
+        "ms-python.python",
+        "github.copilot"
+      ]
+    }
+  }
+}
