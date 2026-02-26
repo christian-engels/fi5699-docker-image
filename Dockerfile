@@ -31,7 +31,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
 # Pre-install the Python packages into uv's cache so uv add is near-instant
 WORKDIR /tmp/warm-cache
 RUN uv init \
-    && uv add polars plotnine pyfixest diff-diff \
+    && uv add polars plotnine pyfixest diff-diff xlsxwriter tidyfinance pyarrow \
     && rm -rf /tmp/warm-cache
 
 WORKDIR /workspace
