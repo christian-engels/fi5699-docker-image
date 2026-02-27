@@ -13,6 +13,24 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get update && apt-get install -y --no-install-recommends gh \
     && rm -rf /var/lib/apt/lists/*
 
+# Install LaTeX (XeTeX, science packages, extras) and Fira fonts
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        texlive \
+        texlive-xetex \
+        texlive-science \
+        texlive-latex-extra \
+        latexmk \
+        wget \
+        unzip \
+    && cd /tmp \
+    && wget -q https://github.com/mozilla/Fira/archive/refs/tags/4.202.zip \
+    && unzip -q 4.202.zip \
+    && mkdir -p /usr/share/fonts/truetype/fira \
+    && cp -r Fira-4.202/otf/*.otf /usr/share/fonts/truetype/fira/ \
+    && fc-cache -f -v \
+    && rm -rf /tmp/4.202.zip /tmp/Fira-4.202 \
+    && rm -rf /var/lib/apt/lists/*
+
 # Install uv
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/local/bin/
 
